@@ -1,0 +1,66 @@
+.header {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  /* box-shadow: 0 0 10px 1px #ccc; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+}
+
+.header > div > div {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.header > div > div .select {
+  width: 150px;
+}
+
+.header h1 {
+  font-weight: lighter;
+}
+
+.header > div > div span {
+  margin: 0 3px;
+}
+
+.header > div > div span:first-child {
+  font-weight: bold;
+  color: #5b21b6;
+}
+
+.header > div > div span:last-child {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  padding-top: 3px;
+  justify-content: center;
+  align-items: center;
+  background-color: #16a34a;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+.header button.btn {
+  color: #fff;
+  border: none;
+  background-color: #3730a3;
+  margin-right: 10px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.header button.btn.cancel {
+  background-color: #e11d48;
+}
