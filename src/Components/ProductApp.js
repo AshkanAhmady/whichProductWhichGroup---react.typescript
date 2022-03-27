@@ -16,8 +16,29 @@ const ProductApp = () => {
     label: "همه",
   });
 
+  useEffect(() => {
+    // localStorage.clear();
+    // use stored datas on reload
+    var storedProducts = JSON.parse(localStorage.getItem("products"));
+    var storedGroup = JSON.parse(localStorage.getItem("group"));
+    var storedOptions = JSON.parse(localStorage.getItem("options"));
+    setProduct(storedProducts);
+    setGroup(storedGroup);
+    options = [...storedOptions];
+  }, []);
+
+  useEffect(() => {
+    // store datas
+    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.setItem("group", JSON.stringify(group));
+    localStorage.setItem("options", JSON.stringify(options));
+
+    filterHandler(selectedOption);
+  }, [products, group]);
+
   const setProductHandler = (product) => {
     setProduct([...products, { ...product, id: Date.now() }]);
+
     // جلوگیری از ثبت شدن مقادیر تکراری
     const cloneGroup = Array.from(new Set([...group, product.group]));
     setGroup(cloneGroup);
@@ -44,10 +65,6 @@ const ProductApp = () => {
       setFilterProducts(updatedProducts);
     }
   };
-
-  useEffect(() => {
-    filterHandler(selectedOption);
-  }, [products]);
 
   return (
     <section className={styles.productApp}>
