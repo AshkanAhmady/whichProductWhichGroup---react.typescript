@@ -1,13 +1,37 @@
 .header {
   width: 100%;
   border-radius: 5px;
-  padding: 10px 15px;
-  background-color: #fff;
+  padding: 10px;
+  background-color: #e2e8f0;
   border: 1px solid #ccc;
-  /* box-shadow: 0 0 10px 1px #ccc; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header .logoBox {
+  display: flex;
+  align-items: center;
+}
+
+.header .btn {
+  padding: 5px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0ea5e9;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header button.btn .icon {
+  font-size: 14px;
+}
+
+.header button.btn.cancel {
+  background-color: #e11d48;
 }
 
 .header > div {
@@ -23,10 +47,12 @@
 
 .header > div > div .select {
   width: 150px;
+  margin-right: 10px;
 }
 
 .header h1 {
-  font-weight: lighter;
+  font-weight: 300;
+  margin-left: 10px;
 }
 
 .header > div > div span {
@@ -49,18 +75,4 @@
   color: #fff;
   font-weight: bold;
   border-radius: 50%;
-}
-
-.header button.btn {
-  color: #fff;
-  border: none;
-  background-color: #3730a3;
-  margin-right: 10px;
-  padding: 3px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.header button.btn.cancel {
-  background-color: #e11d48;
 }

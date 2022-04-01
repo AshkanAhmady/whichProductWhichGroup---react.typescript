@@ -3,6 +3,7 @@ import AddProductForm from "./AddProductForm/AddProductForm";
 import ProductList from "./ProductList/ProductList";
 import styles from "./ProductApp.module.css";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 let options = [{ value: "همه", label: "همه" }];
 
@@ -44,6 +45,8 @@ const ProductApp = () => {
     setGroup(cloneGroup);
 
     optionsHandler(product);
+    // notification
+    toast.success("محصول شما ثبت شد");
   };
 
   const optionsHandler = (product) => {

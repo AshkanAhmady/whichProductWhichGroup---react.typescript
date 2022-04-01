@@ -1,5 +1,7 @@
 import styles from "./Nav.module.css";
 import Select from "react-select";
+import { FaPlus } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 const Nav = ({
   setShowForm,
@@ -17,13 +19,17 @@ const Nav = ({
 
   return (
     <header className={styles.header}>
-      <div>
+      <div className={styles.logoBox}>
         <h1>انبار محصولات</h1>
         <button
           onClick={() => setShowForm((prevState) => !prevState)}
           className={`${styles.btn} ${showForm === true ? styles.cancel : ""}`}
         >
-          {showForm === true ? "انصراف" : "محصول جدید"}
+          {showForm === true ? (
+            <FaTimes className={`${styles.icon} ${styles.cancel}`} />
+          ) : (
+            <FaPlus className={styles.icon} />
+          )}
         </button>
       </div>
       {products.length > 0 && (
@@ -33,7 +39,7 @@ const Nav = ({
             <span>{products.length}</span>
           </div>
           <div>
-            <span> دسته بندی ها: </span>
+            {/* <span> دسته بندی ها: </span> */}
             <Select
               className={styles.select}
               value={selectedOption}

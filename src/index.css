@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Vazir";
+  font-family: Vazirmatn, sans-serif;
   transition: all 0.3s;
   direction: rtl;
 }

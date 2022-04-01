@@ -1,3 +1,4 @@
+import Product from "../Product/Product";
 import styles from "./ProductList.module.css";
 
 const ProductList = ({ filterProducts }) => {
@@ -6,20 +7,7 @@ const ProductList = ({ filterProducts }) => {
   return (
     <div className={styles.productList}>
       {filterProducts.map((product) => {
-        return (
-          <div key={product.id} className={styles.singleProduct}>
-            <h2>{product.title}</h2>
-            <div className={styles.details}>
-              <p>
-                تعداد: <span className={styles.number}>{product.number}</span>
-              </p>
-              <p>
-                دسته بندی:
-                <span className={styles.number}>{product.group}</span>
-              </p>
-            </div>
-          </div>
-        );
+        return <Product product={product} />;
       })}
     </div>
   );

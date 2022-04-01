@@ -4,6 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(to right, #8a2387, #e94057, #f27121);
+  background: #eee;
   padding: 20px;
 }
