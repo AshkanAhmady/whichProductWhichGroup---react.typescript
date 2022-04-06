@@ -9,7 +9,7 @@ let options = [{ value: "همه", label: "همه" }];
 
 const ProductApp = () => {
   const [showForm, setShowForm] = useState(false);
-  const [products, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
   const [group, setGroup] = useState([]);
   const [selectedOption, setSelectedOption] = useState({
@@ -23,7 +23,7 @@ const ProductApp = () => {
     var storedProducts = JSON.parse(localStorage.getItem("products"));
     var storedGroup = JSON.parse(localStorage.getItem("group"));
     var storedOptions = JSON.parse(localStorage.getItem("options"));
-    setProduct(storedProducts);
+    setProducts(storedProducts);
     setGroup(storedGroup);
     options = [...storedOptions];
   }, []);
@@ -38,7 +38,7 @@ const ProductApp = () => {
   }, [products, group]);
 
   const setProductHandler = (product) => {
-    setProduct([...products, { ...product, id: Date.now() }]);
+    setProducts([...products, { ...product, id: Date.now() }]);
 
     // جلوگیری از ثبت شدن مقادیر تکراری
     const cloneGroup = Array.from(new Set([...group, product.group]));
@@ -69,6 +69,17 @@ const ProductApp = () => {
     }
   };
 
+  const updateHandler = (updatedProduct) => {
+    const cloneProducts = [...products];
+    const index = cloneProducts.findIndex((item) => {
+      return item.id === updatedProduct.id;
+    });
+    cloneProducts[index] = updatedProduct;
+    setProducts(cloneProducts);
+    console.log(products);
+    toast.success("محصول مورد نظر با موفقیت به روزرسانی شد");
+  };
+
   return (
     <section className={styles.productApp}>
       <Nav
@@ -88,7 +99,11 @@ const ProductApp = () => {
           setShowForm={setShowForm}
         />
       )}
-      <ProductList filterProducts={filterProducts} />
+      <ProductList
+        options={options}
+        updateHandler={updateHandler}
+        filterProducts={filterProducts}
+      />
     </section>
   );
 };

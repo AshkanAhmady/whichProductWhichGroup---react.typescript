@@ -1,5 +1,5 @@
 import "./App.css";
-import ProductApp from "./ClassBaseProjectFolder/ProductApp";
+import ProductApp from "./FunctionalProjectFolder/ProductApp";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

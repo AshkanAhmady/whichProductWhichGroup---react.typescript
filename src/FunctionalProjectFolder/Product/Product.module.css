@@ -17,16 +17,35 @@
 .singleProduct .details {
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 40%;
+}
+
+.singleProduct .details div {
+  display: flex;
 }
 
 .singleProduct .details span.number {
   font-weight: 300;
-  margin-left: 25px;
-  margin-right: 5px;
+  margin: 0 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   /* color: #1e40af; */
   border-bottom: 2px solid #444;
+}
+
+.singleProduct .edit {
+  background-color: transparent;
+  font-size: 16px;
+  border: 1px solid blueviolet;
+  color: blueviolet;
+  padding: 0 10px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.singleProduct .edit:hover {
+  background-color: blueviolet;
+  color: #fff;
 }
