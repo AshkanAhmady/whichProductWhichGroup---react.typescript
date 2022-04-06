@@ -17,7 +17,27 @@
 .singleProduct .details {
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 50%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.singleProduct .details .current {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.singleProduct .details .current span {
+  font-size: 11px;
+}
+
+.singleProduct .details .current span strong {
+  margin-left: 5px;
+  font-size: 12.5px;
 }
 
 .singleProduct .details div {
@@ -48,4 +68,28 @@
 .singleProduct .edit:hover {
   background-color: blueviolet;
   color: #fff;
+}
+
+@media (max-width: 550px) {
+  .singleProduct .details {
+    width: 60%;
+    font-size: 14;
+  }
+
+  .singleProduct .edit {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 465px) {
+  .singleProduct .details {
+    min-width: 70%;
+  }
+
+  /* .singleProduct .details .current {
+    width: 100%;
+    order: 1;
+    margin-top: 5px;
+    align-items: flex-end;
+  } */
 }

@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .header .logoBox {
@@ -75,4 +76,44 @@
   color: #fff;
   font-weight: bold;
   border-radius: 50%;
+}
+
+@media (max-width: 800px) {
+  .header > div > div {
+    margin: 0;
+  }
+
+  .header > div > div .select {
+    width: 150px;
+  }
+}
+
+@media (max-width: 545px) {
+  .header .filterBox {
+    flex-direction: column;
+  }
+
+  .header .filterBox .select {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header .filterBox {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .header > div > div span:last-child {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
 }

@@ -2,6 +2,7 @@ import styles from "./Nav.module.css";
 import Select from "react-select";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import Search from "../Search/Search";
 
 const Nav = ({
   setShowForm,
@@ -11,6 +12,7 @@ const Nav = ({
   filterHandler,
   selectedOption,
   setSelectedOption,
+  searchHandler,
 }) => {
   const changeHandler = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -32,8 +34,9 @@ const Nav = ({
           )}
         </button>
       </div>
+      <Search searchHandler={searchHandler} />
       {products.length > 0 && (
-        <div>
+        <div className={styles.filterBox}>
           <div>
             <span> تعداد محصولات: </span>
             <span>{products.length}</span>
