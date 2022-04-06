@@ -132,6 +132,7 @@ const ProductApp = () => {
         options={options}
         updateHandler={updateHandler}
         filterProducts={filterProducts}
+        setFilterProducts={setFilterProducts}
       />
     </section>
   );

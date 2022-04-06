@@ -1,5 +1,6 @@
 import styles from "./Product.module.css";
 import CurrentTime from "../../common/CurrentTime";
+import { FaPen } from "react-icons/fa";
 
 const Product = ({ product, onEdit }) => {
   return (
@@ -8,25 +9,23 @@ const Product = ({ product, onEdit }) => {
       <div className={styles.details}>
         <div className={styles.current}>
           <span>
+            <strong> ایجاد: </strong>
             {CurrentTime(product.created_at)}
-            <span> ایجاد شد </span>
           </span>
           {product.updated_at > 0 && (
             <span>
+              <strong> ویرایش: </strong>
               {CurrentTime(product.updated_at)}
-              <span> ویرایش شد </span>
             </span>
           )}
         </div>
-        <div>
-          <button className={styles.edit} onClick={onEdit}>
-            ویرایش
-          </button>
-          <p>
-            <span className={styles.number}>{product.number}</span>
-          </p>
+        <div className={styles.edit} onClick={onEdit}>
+          <FaPen />
         </div>
         <p>
+          <span className={styles.number}>{product.number}</span>
+        </p>
+        <p className={styles.group}>
           <span className={styles.group}>{product.group}</span>
         </p>
       </div>

@@ -38,7 +38,7 @@ const Nav = ({
       {products.length > 0 && (
         <div className={styles.filterBox}>
           <div>
-            <span> تعداد محصولات: </span>
+            <span> تعداد: </span>
             <span>{products.length}</span>
           </div>
           <div>

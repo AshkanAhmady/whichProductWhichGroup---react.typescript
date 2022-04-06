@@ -28,13 +28,15 @@
 }
 
 .productForm button {
-  background-color: #7e22ce;
+  background-color: #22c55e;
   border: none;
   border-radius: 5px;
   color: #fff;
   align-self: flex-start;
-  padding: 3px 20px;
+  padding: 3px 25px;
   margin-top: 10px;
+  font-size: 17px;
+  cursor: pointer;
 }
 
 .productForm .groupBox {
@@ -62,7 +64,7 @@
 }
 
 .productForm .groupBox a.newGroupBtn {
-  background-color: #22c55e;
+  background-color: #5b21b6;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -70,8 +72,10 @@
   padding: 3px 20px;
   margin-top: 10px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .productForm .groupBox a.newGroupBtn.Registered {
-  background-color: #ea580c;
+  background-color: #5b21b6;
+  font-size: 14px;
 }

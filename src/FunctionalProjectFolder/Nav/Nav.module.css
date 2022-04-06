@@ -101,6 +101,8 @@
 @media (max-width: 400px) {
   .header {
     flex-direction: column;
+    /* position: fixed;
+    width: 90%; */
   }
 
   .header .filterBox {
