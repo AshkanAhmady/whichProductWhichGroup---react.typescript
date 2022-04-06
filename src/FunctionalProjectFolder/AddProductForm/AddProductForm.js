@@ -4,8 +4,10 @@ import styles from "./AddProductForm.module.css";
 const AddProductForm = ({ setShowForm, setProductHandler, group }) => {
   const [product, setProduct] = useState({
     title: "",
-    number: "",
+    number: 0,
     group: "",
+    created_at: 0,
+    updated_at: 0,
   });
 
   const [showGroup, setShowGroup] = useState(false);
@@ -17,7 +19,7 @@ const AddProductForm = ({ setShowForm, setProductHandler, group }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     setProductHandler(product);
-
+    console.log(product.number);
     setShowForm(false);
   };
 

@@ -4,6 +4,7 @@ import ProductList from "./ProductList/ProductList";
 import styles from "./ProductApp.module.css";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import _ from "lodash";
 
 let options = [{ value: "همه", label: "همه" }];
 
@@ -38,7 +39,10 @@ const ProductApp = () => {
   }, [products, group]);
 
   const setProductHandler = (product) => {
-    setProducts([...products, { ...product, id: Date.now() }]);
+    setProducts([
+      ...products,
+      { ...product, id: Date.now(), created_at: new Date().getTime() },
+    ]);
 
     // جلوگیری از ثبت شدن مقادیر تکراری
     const cloneGroup = Array.from(new Set([...group, product.group]));
@@ -62,7 +66,7 @@ const ProductApp = () => {
     if (selectedOption.value === "همه") {
       setFilterProducts(products);
     } else {
-      const updatedProducts = products.filter(
+      let updatedProducts = products.filter(
         (product) => product.group === selectedOption.value
       );
       setFilterProducts(updatedProducts);
@@ -70,14 +74,38 @@ const ProductApp = () => {
   };
 
   const updateHandler = (updatedProduct) => {
-    const cloneProducts = [...products];
+    updatedProduct.updated_at = new Date().getTime();
+    let cloneProducts = [...products];
     const index = cloneProducts.findIndex((item) => {
       return item.id === updatedProduct.id;
     });
     cloneProducts[index] = updatedProduct;
+    cloneProducts = _.orderBy(cloneProducts, ["updated_at"], ["desc"]);
     setProducts(cloneProducts);
-    console.log(products);
     toast.success("محصول مورد نظر با موفقیت به روزرسانی شد");
+  };
+
+  const searchHandler = (value) => {
+    if (!value || value === "") {
+      filterHandler(selectedOption);
+      return;
+    }
+
+    // filter products befor search
+    let updatedProducts;
+    if (selectedOption.value === "همه") {
+      updatedProducts = products;
+    } else {
+      updatedProducts = products.filter(
+        (product) => product.group === selectedOption.value
+      );
+    }
+
+    // search product after filter
+    let searched = updatedProducts.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilterProducts(searched);
   };
 
   return (
@@ -91,6 +119,7 @@ const ProductApp = () => {
         products={products}
         showForm={showForm}
         setShowForm={setShowForm}
+        searchHandler={searchHandler}
       />
       {showForm && (
         <AddProductForm
