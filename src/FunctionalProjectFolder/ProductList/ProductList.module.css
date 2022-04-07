@@ -11,28 +11,34 @@
 
 @media (max-width: 550px) {
   .productList {
-<<<<<<< HEAD
-    max-height: 640px;
-=======
-    max-height: 350px;
->>>>>>> 1a4f6f98e4a55ba591c7036daca9b7810a3ef10c
+    height: 60vh;
     overflow-y: scroll;
     position: relative;
   }
-  .productList::after {
+  body::after {
+    /* background-color: red; */
     content: "";
-    position: fixed;
+    position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    box-shadow: inset 0 -200px 60px -100px rgba(238, 238, 238, 1);
+    height: 14%;
     z-index: 1000;
+    background-image: linear-gradient(
+      to top,
+      rgba(238, 238, 238),
+      rgba(238, 238, 238),
+      rgba(238, 238, 238),
+      rgba(255, 255, 255, 0)
+    );
   }
-<<<<<<< HEAD
   body {
     overflow: hidden;
   }
-=======
->>>>>>> 1a4f6f98e4a55ba591c7036daca9b7810a3ef10c
+}
+
+@media (max-width: 400px) {
+  .productList {
+    height: 55vh;
+  }
 }
