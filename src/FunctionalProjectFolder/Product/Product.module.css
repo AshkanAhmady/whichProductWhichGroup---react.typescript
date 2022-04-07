@@ -81,7 +81,7 @@
   color: #1e40af;
 }
 
-@media (max-width: 465px) {
+@media (max-width: 550px) {
   .singleProduct p.group,
   .singleProduct .edit,
   .singleProduct .details span.number,
@@ -108,6 +108,6 @@
 
   .singleProduct .details {
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }

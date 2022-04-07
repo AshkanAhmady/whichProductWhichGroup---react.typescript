@@ -79,3 +79,12 @@
   background-color: #5b21b6;
   font-size: 14px;
 }
+
+@media (max-width: 545px) {
+  .productForm {
+    position: fixed;
+    top: 0;
+    z-index: 1500;
+    width: 90%;
+  }
+}

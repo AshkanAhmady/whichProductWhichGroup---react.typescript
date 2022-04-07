@@ -96,6 +96,19 @@
   .header .filterBox .select {
     margin-top: 5px;
   }
+
+  .header .btn {
+    padding: 15px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+  }
+
+  .header button.btn .icon {
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -114,8 +127,6 @@
   }
 
   .header > div > div span:last-child {
-    width: 20px;
-    height: 20px;
     font-size: 14px;
   }
 }
