@@ -11,7 +11,7 @@
 
 @media (max-width: 550px) {
   .productList {
-    height: 60vh;
+    height: 65vh;
     overflow-y: scroll;
     position: relative;
   }
@@ -39,6 +39,6 @@
 
 @media (max-width: 400px) {
   .productList {
-    height: 55vh;
+    height: 62vh;
   }
 }
