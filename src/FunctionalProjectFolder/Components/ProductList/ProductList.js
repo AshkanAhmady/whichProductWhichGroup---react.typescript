@@ -2,8 +2,10 @@ import { useState } from "react";
 import Product from "../Product/Product";
 import styles from "./ProductList.module.css";
 import UpdateProductForm from "../updateProductForm/UpdateProductForm";
+import { useSelector, useDispatch } from "react-redux";
+import { updateProduct } from "../../Redux/Product/productActions";
 
-const ProductList = ({ filterProducts, options, updateHandler }) => {
+const ProductList = () => {
   const [edit, setEdit] = useState({
     group: "",
     number: null,
@@ -11,8 +13,12 @@ const ProductList = ({ filterProducts, options, updateHandler }) => {
     id: null,
   });
 
+  const filterProducts = useSelector((state) => state.filterProducts);
+  const options = useSelector((state) => state.options);
+  const dispatch = useDispatch();
+
   const editProduct = (product) => {
-    updateHandler(product);
+    dispatch(updateProduct(product));
     setEdit({
       group: "",
       number: null,
@@ -44,7 +50,6 @@ const ProductList = ({ filterProducts, options, updateHandler }) => {
       {edit.id ? (
         <UpdateProductForm
           editProduct={editProduct}
-          updateHandler={updateHandler}
           edit={edit}
           options={options}
         />

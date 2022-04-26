@@ -1,12 +1,16 @@
 import { useState } from "react";
 import styles from "./Search.module.css";
+import { useDispatch } from "react-redux";
+import { searchProducts } from "../../Redux/Product/productActions";
 
-const Search = ({ searchHandler }) => {
+const Search = () => {
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
 
   const changeHandler = (e) => {
-    setSearch(e.target.value);
-    searchHandler(e.target.value);
+    let value = e.target.value;
+    setSearch(value);
+    dispatch(searchProducts(value));
   };
 
   return (

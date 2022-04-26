@@ -3,20 +3,23 @@ import Select from "react-select";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import Search from "../Search/Search";
-
-const Nav = ({
-  setShowForm,
-  showForm,
-  products,
-  options,
-  filterHandler,
-  selectedOption,
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterProduct,
   setSelectedOption,
-  searchHandler,
-}) => {
+  setShowForm,
+} from "../../Redux/Product/productActions";
+
+const Nav = () => {
+  const products = useSelector((state) => state.products);
+  const showForm = useSelector((state) => state.showForm);
+  const selectedOption = useSelector((state) => state.selectedOption);
+  const options = useSelector((state) => state.options);
+  const dispatch = useDispatch();
+
   const changeHandler = (selectedOption) => {
-    setSelectedOption(selectedOption);
-    filterHandler(selectedOption);
+    dispatch(setSelectedOption(selectedOption));
+    dispatch(filterProduct(selectedOption));
   };
 
   return (
@@ -24,7 +27,7 @@ const Nav = ({
       <div className={styles.logoBox}>
         <h1>انبار محصولات</h1>
         <button
-          onClick={() => setShowForm((prevState) => !prevState)}
+          onClick={() => dispatch(setShowForm())}
           className={`${styles.btn} ${showForm === true ? styles.cancel : ""}`}
         >
           {showForm === true ? (
@@ -34,7 +37,7 @@ const Nav = ({
           )}
         </button>
       </div>
-      <Search searchHandler={searchHandler} />
+      <Search />
       {products.length > 0 && (
         <div className={styles.filterBox}>
           <div>
