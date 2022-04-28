@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import _ from "lodash";
 import {
   ADD_PRODUCT,
@@ -32,14 +31,16 @@ const productReducer = (state = initialState, action) => {
         ...state.products,
         { ...action.payload, id: Date.now(), created_at: new Date().getTime() },
       ];
-      // جلوگیری از ثبت شدن مقادیر تکراری
-      const updatedGroup = Array.from(
+
+      const nonDuplicateGroup = Array.from(
         new Set([...state.group, action.payload.group])
       );
-      // notification
-      toast.success("محصول شما ثبت شد");
 
-      return { ...state, products: updatedProducts, group: updatedGroup };
+      return {
+        ...state,
+        products: updatedProducts,
+        group: nonDuplicateGroup,
+      };
     }
     case SET_PRODUCTS: {
       return { ...state, products: action.payload };
@@ -48,10 +49,10 @@ const productReducer = (state = initialState, action) => {
       return { ...state, group: action.payload };
     }
     case ADD_OPTIONS: {
-      // اگر دسته بندی انتخاب شده در هنگام ثبت محصول جزو دسته بندی های قبلی بود، آنرا به لیست دسته بندی ها اضافه نکن
-      // if(newProduct.group === savedGroup) => dont add this group to group list
-      let sameValue = state.group.find((item) => item == action.payload.group);
-      if (!sameValue) {
+      let isInOptions = state.group.find(
+        (item) => item == action.payload.group
+      );
+      if (!isInOptions) {
         let updatedUptions = [
           ...state.options,
           { value: action.payload.group, label: action.payload.group },
@@ -69,12 +70,11 @@ const productReducer = (state = initialState, action) => {
     case FILTER: {
       if (action.payload.value === "همه") {
         return { ...state, filterProducts: state.products };
-      } else {
-        let updatedProducts = state.products.filter(
-          (product) => product.group === action.payload.value
-        );
-        return { ...state, filterProducts: updatedProducts };
       }
+      let updatedProducts = state.products.filter(
+        (product) => product.group === action.payload.value
+      );
+      return { ...state, filterProducts: updatedProducts };
     }
     case UPDATE: {
       action.payload.updated_at = new Date().getTime();
@@ -84,7 +84,7 @@ const productReducer = (state = initialState, action) => {
       });
       cloneProducts[index] = action.payload;
       cloneProducts = _.orderBy(cloneProducts, ["updated_at"], ["desc"]);
-      toast.success("محصول مورد نظر با موفقیت به روزرسانی شد");
+
       return { ...state, products: cloneProducts };
     }
     case SEARCH: {

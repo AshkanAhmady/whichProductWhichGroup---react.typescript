@@ -4,6 +4,7 @@ import styles from "./ProductList.module.css";
 import UpdateProductForm from "../updateProductForm/UpdateProductForm";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProduct } from "../../Redux/Product/productActions";
+import { toast } from "react-toastify";
 
 const ProductList = () => {
   const [edit, setEdit] = useState({
@@ -19,6 +20,7 @@ const ProductList = () => {
 
   const editProduct = (product) => {
     dispatch(updateProduct(product));
+    toast.success("محصول مورد نظر با موفقیت به روزرسانی شد");
     setEdit({
       group: "",
       number: null,

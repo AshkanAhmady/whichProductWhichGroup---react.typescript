@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   setOptions,
   addProduct,
@@ -30,6 +31,8 @@ const AddProductForm = () => {
     e.preventDefault();
     dispatch(addOptions(product));
     dispatch(addProduct(product));
+    // notification
+    toast.success("محصول شما ثبت شد");
     dispatch(setShowForm());
     setProduct({
       title: "",
