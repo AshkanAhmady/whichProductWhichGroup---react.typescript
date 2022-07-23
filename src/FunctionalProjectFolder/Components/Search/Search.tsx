@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./Search.module.css";
 import { useDispatch } from "react-redux";
 import { searchProducts } from "../../Redux/Product/productActions";
@@ -7,8 +7,8 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
-  const changeHandler = (e) => {
-    let value = e.target.value;
+  const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+    let value = e.currentTarget.value;
     setSearch(value);
     dispatch(searchProducts(value));
   };

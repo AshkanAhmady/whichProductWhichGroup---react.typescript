@@ -1,23 +1,26 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import { UpdateProductFormComponentProps } from "../../../Interfaces";
 import styles from "./UpdateProductForm.module.css";
 
-const UpdateProductForm = ({ options, edit, editProduct }) => {
-  const [product, setProduct] = useState(edit ? edit : "");
-  const [selectedOption, setSelectedOption] = useState(
-    product ? { value: product.group, label: product.group } : ""
-  );
+const UpdateProductForm: React.FC<UpdateProductFormComponentProps> = ({ options, edit, editProduct }) => {
+  const [product, setProduct] = useState(edit);
+  const [selectedOption, setSelectedOption] = useState({value: "همه", label: "همه"});
 
-  const changeHandler = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+  useEffect(() => {
+    setSelectedOption({ value: product.group, label: product.group })
+  }, [product])
+
+  const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+    setProduct({ ...product, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const groupChangeHandler = (selectedOption) => {
+  const groupChangeHandler = (selectedOption: any) => {
     setSelectedOption(selectedOption);
     setProduct({ ...product, group: selectedOption.label });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     editProduct(product);
   };
@@ -44,7 +47,7 @@ const UpdateProductForm = ({ options, edit, editProduct }) => {
         value={selectedOption}
         onChange={groupChangeHandler}
         //همه ی گزینه ها بغیر از همه
-        options={options.filter((item) => item.label != "همه")}
+        options={options.filter((item) => item.label !== "همه")}
       />
       <button type="submit">ثبت</button>
     </form>

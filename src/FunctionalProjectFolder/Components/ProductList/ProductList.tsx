@@ -5,27 +5,28 @@ import UpdateProductForm from "../updateProductForm/UpdateProductForm";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProduct } from "../../Redux/Product/productActions";
 import { toast } from "react-toastify";
+import { GlobalStateInterface, ProductInterface } from "../../../Interfaces";
 
 const ProductList = () => {
   const [edit, setEdit] = useState({
     group: "",
-    number: null,
+    number: 0,
     title: "",
-    id: null,
+    id: 0,
   });
 
-  const filterProducts = useSelector((state) => state.filterProducts);
-  const options = useSelector((state) => state.options);
+  const filterProducts = useSelector((state: GlobalStateInterface) => state.filterProducts);
+  const options = useSelector((state: GlobalStateInterface) => state.options);
   const dispatch = useDispatch();
 
-  const editProduct = (product) => {
+  const editProduct = (product: ProductInterface) => {
     dispatch(updateProduct(product));
     toast.success("محصول مورد نظر با موفقیت به روزرسانی شد");
     setEdit({
       group: "",
-      number: null,
+      number: 0,
       title: "",
-      id: null,
+      id: 0,
     });
   };
 
@@ -34,7 +35,7 @@ const ProductList = () => {
       return <div className={styles.noProduct}>هنوز محصولی ثبت نشده</div>;
     return (
       <div className={styles.productList}>
-        {filterProducts.map((product) => {
+        {filterProducts.map((product: ProductInterface) => {
           return (
             <Product
               key={product.id}

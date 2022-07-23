@@ -1,3 +1,4 @@
+import { ProductInterface } from "../../../Interfaces";
 import {
   ADD_PRODUCT,
   SET_PRODUCTS,
@@ -11,63 +12,63 @@ import {
   SET_SELECTED_OPTION,
 } from "./productType";
 
-export function addProduct(product) {
+export function addProduct(product: ProductInterface) {
   return {
     type: ADD_PRODUCT,
     payload: product,
   };
 }
 
-export function setProducts(storedProducts) {
+export function setProducts(storedProducts: ProductInterface[]) {
   return {
     type: SET_PRODUCTS,
     payload: storedProducts,
   };
 }
 
-export function setGroups(storedGroup) {
+export function setGroups(storedGroup: string[]) {
   return {
     type: SET_GROUPS,
     payload: storedGroup,
   };
 }
 
-export function addOptions(product) {
+export function addOptions(product: ProductInterface) {
   return {
     type: ADD_OPTIONS,
     payload: product,
   };
 }
 
-export function setOptions(storedOptions) {
+export function setOptions(storedOptions: {value: string, label: string}[]) {
   return {
     type: SET_OPTIONS,
     payload: storedOptions,
   };
 }
 
-export function setSelectedOption(selectedOption) {
+export function setSelectedOption(selectedOption: {value: string; label: string;}) {
   return {
     type: SET_SELECTED_OPTION,
     payload: selectedOption,
   };
 }
 
-export function filterProduct(selectedOption) {
+export function filterProduct(selectedOption: {value: string; label: string;}) {
   return {
     type: FILTER,
     payload: selectedOption,
   };
 }
 
-export function updateProduct(updatedProduct) {
+export function updateProduct(updatedProduct: ProductInterface) {
   return {
     type: UPDATE,
     payload: updatedProduct,
   };
 }
 
-export function searchProducts(value) {
+export function searchProducts(value: string) {
   return {
     type: SEARCH,
     payload: value,

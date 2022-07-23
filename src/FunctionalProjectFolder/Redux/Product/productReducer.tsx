@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { GlobalStateInterface, ProductInterface, ProductReducerAction } from "../../../Interfaces";
 import {
   ADD_PRODUCT,
   SET_PRODUCTS,
@@ -24,7 +25,7 @@ const initialState = {
   showForm: false,
 };
 
-const productReducer = (state = initialState, action) => {
+const productReducer = (state: GlobalStateInterface = initialState, action: ProductReducerAction) => {
   switch (action.type) {
     case ADD_PRODUCT: {
       let updatedProducts = [
@@ -50,7 +51,7 @@ const productReducer = (state = initialState, action) => {
     }
     case ADD_OPTIONS: {
       let isInOptions = state.group.find(
-        (item) => item == action.payload.group
+        (item) => item === action.payload.group
       );
       if (!isInOptions) {
         let updatedUptions = [
@@ -72,14 +73,14 @@ const productReducer = (state = initialState, action) => {
         return { ...state, filterProducts: state.products };
       }
       let updatedProducts = state.products.filter(
-        (product) => product.group === action.payload.value
+        (product: ProductInterface) => product.group === action.payload.value
       );
       return { ...state, filterProducts: updatedProducts };
     }
     case UPDATE: {
       action.payload.updated_at = new Date().getTime();
-      let cloneProducts = [...state.products];
-      const index = cloneProducts.findIndex((item) => {
+      let cloneProducts: ProductInterface[] = [...state.products];
+      const index = cloneProducts.findIndex((item: ProductInterface) => {
         return item.id === action.payload.id;
       });
       cloneProducts[index] = action.payload;
@@ -94,12 +95,12 @@ const productReducer = (state = initialState, action) => {
         updatedProducts = state.products;
       } else {
         updatedProducts = state.products.filter(
-          (product) => product.group === state.selectedOption.value
+          (product: ProductInterface) => product.group === state.selectedOption.value
         );
       }
 
       // search product after filter
-      let searched = updatedProducts.filter((item) =>
+      let searched = updatedProducts.filter((item: ProductInterface) =>
         item.title.toLowerCase().includes(action.payload.toLowerCase())
       );
       return { ...state, filterProducts: searched };

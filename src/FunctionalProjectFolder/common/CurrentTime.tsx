@@ -1,4 +1,4 @@
-const currentTime = (time) => {
+const currentTime = (time: number) => {
   let difference = new Date().getTime() - time,
     sec = Math.floor(difference / 1000),
     min = Math.floor(sec / 60),

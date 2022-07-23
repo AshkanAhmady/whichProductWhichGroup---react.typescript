@@ -9,15 +9,16 @@ import {
   setSelectedOption,
   setShowForm,
 } from "../../Redux/Product/productActions";
+import { GlobalStateInterface } from "../../../Interfaces";
 
 const Nav = () => {
-  const products = useSelector((state) => state.products);
-  const showForm = useSelector((state) => state.showForm);
-  const selectedOption = useSelector((state) => state.selectedOption);
-  const options = useSelector((state) => state.options);
+  const products = useSelector((state: GlobalStateInterface) => state.products);
+  const showForm = useSelector((state: GlobalStateInterface) => state.showForm);
+  const selectedOption = useSelector((state: GlobalStateInterface) => state.selectedOption);
+  const options = useSelector((state: GlobalStateInterface) => state.options);
   const dispatch = useDispatch();
 
-  const changeHandler = (selectedOption) => {
+  const changeHandler = (selectedOption: any) => {
     dispatch(setSelectedOption(selectedOption));
     dispatch(filterProduct(selectedOption));
   };

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { GlobalStateInterface } from "../../../Interfaces";
 import {
-  setOptions,
   addProduct,
   setShowForm,
   addOptions,
@@ -12,6 +12,7 @@ import styles from "./AddProductForm.module.css";
 const AddProductForm = () => {
   const [showGroup, setShowGroup] = useState(false);
   const [product, setProduct] = useState({
+    id: 0,
     title: "",
     number: 0,
     group: "",
@@ -20,14 +21,14 @@ const AddProductForm = () => {
   });
 
   const dispatch = useDispatch();
-  const group = useSelector((state) => state.group);
-  const showForm = useSelector((state) => state.showForm);
+  const group = useSelector((state: GlobalStateInterface) => state.group);
+  const showForm = useSelector((state: GlobalStateInterface) => state.showForm);
 
-  const changeHandler = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+  const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+    setProduct({ ...product, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(addOptions(product));
     dispatch(addProduct(product));
@@ -35,6 +36,7 @@ const AddProductForm = () => {
     toast.success("محصول شما ثبت شد");
     dispatch(setShowForm());
     setProduct({
+      id: 0,
       title: "",
       number: 0,
       group: "",
@@ -74,7 +76,7 @@ const AddProductForm = () => {
                 type="text"
                 value={product.group}
               />
-            ) : group.length == 0 ? (
+            ) : group.length === 0 ? (
               <input
                 required
                 name="group"
@@ -84,7 +86,7 @@ const AddProductForm = () => {
                 value={product.group}
               />
             ) : (
-              group.map((item, index) => {
+              group.map((item, index: number) => {
                 return (
                   <div className={styles.singleGroup} key={index}>
                     <label htmlFor={item}>{item}</label>
